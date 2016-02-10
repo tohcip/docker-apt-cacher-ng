@@ -29,7 +29,7 @@ If you find this image useful here's how you can help:
 
 - Send a pull request with your awesome features and bug fixes
 - Help users resolve their [issues](../../issues?q=is%3Aopen+is%3Aissue).
-- Support the development of this image with a [donation](http://www.damagehead.com/donate/)
+- Support the development of the original image with a [donation](http://www.damagehead.com/donate/). many thanks to sameersbn, this is only his port to Raspberry PI.
 
 ## Issues
 
@@ -47,18 +47,12 @@ If the above recommendations do not help then [report your issue](../../issues/n
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/sameersbn/apt-cacher-ng) and is the recommended method of installation.
+Automated builds of this image are not yet available on [Dockerhub].
 
-> **Note**: Builds are also available on [Quay.io](https://quay.io/repository/sameersbn/apt-cacher-ng)
-
-```bash
-docker pull sameersbn/apt-cacher-ng:latest
-```
-
-Alternatively you can build the image yourself.
+You can build the image yourself.
 
 ```bash
-docker build -t sameersbn/apt-cacher-ng github.com/sameersbn/docker-apt-cacher-ng
+docker build -t tochip/apt-cacher-ng github.com/tochip/docker-apt-cacher-ng
 ```
 
 ## Quickstart
@@ -69,7 +63,7 @@ Start Apt-Cacher NG using:
 docker run --name apt-cacher-ng -d --restart=always \
   --publish 3142:3142 \
   --volume /srv/docker/apt-cacher-ng:/var/cache/apt-cacher-ng \
-  sameersbn/apt-cacher-ng:latest
+  tochip/apt-cacher-ng:latest
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
@@ -82,7 +76,7 @@ You can customize the launch command of Apt-Cacher NG server by specifying argum
 docker run --name apt-cacher-ng -it --rm \
   --publish 3142:3142 \
   --volume /srv/docker/apt-cacher-ng:/var/cache/apt-cacher-ng \
-  sameersbn/apt-cacher-ng:latest -h
+  tochip/apt-cacher-ng:latest -h
 ```
 
 ## Persistence
@@ -132,7 +126,7 @@ Using the [Command-line arguments](#command-line-arguments) feature, you can spe
 docker run --name apt-cacher-ng -it --rm \
   --publish 3142:3142 \
   --volume /srv/docker/apt-cacher-ng:/var/cache/apt-cacher-ng \
-  sameersbn/apt-cacher-ng:latest -e
+  tochip/apt-cacher-ng:latest -e
 ```
 
 The same can also be achieved on a running instance by visiting the url http://localhost:3142/acng-report.html in the web browser and selecting the **Start Scan and/or Expiration** option.
@@ -141,10 +135,12 @@ The same can also be achieved on a running instance by visiting the url http://l
 
 To upgrade to newer releases:
 
-  1. Download the updated Docker image:
+  1. Build the updated Docker image:
 
   ```bash
-  docker pull sameersbn/apt-cacher-ng:latest
+  git clone https://github.com/tochip/docker-apt-cacher-ng.git
+  cd docker-apt-cacher-ng
+  docker build -t tochip/apt-cacher-ng .
   ```
 
   2. Stop the currently running image:
@@ -164,7 +160,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name apt-cacher-ng -d \
     [OPTIONS] \
-    sameersbn/apt-cacher-ng:latest
+    tochip/apt-cacher-ng:latest
   ```
 
 ## Shell Access
