@@ -1,7 +1,8 @@
-FROM sameersbn/ubuntu:14.04.20160121
-MAINTAINER sameer@damagehead.com
+#FROM hotchip/raspbian
+FROM sdhibit/rpi-raspbian
+MAINTAINER tohcip
 
-ENV APT_CACHER_NG_VERSION=0.7.26 \
+ENV APT_CACHER_NG_VERSION=0.8.0 \
     APT_CACHER_NG_CACHE_DIR=/var/cache/apt-cacher-ng \
     APT_CACHER_NG_LOG_DIR=/var/log/apt-cacher-ng \
     APT_CACHER_NG_USER=apt-cacher-ng
